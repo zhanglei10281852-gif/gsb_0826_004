@@ -82,8 +82,8 @@ html {
 
 body {
   font-family: var(--nexa-font-sans);
-  color: var(--nexa-surface-900);
-  background-color: var(--nexa-surface-0);
+  color: rgb(var(--nexa-surface-900));
+  background-color: rgb(var(--nexa-surface-0));
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -103,18 +103,18 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--nexa-surface-300);
+  background: rgb(var(--nexa-surface-300));
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--nexa-surface-400);
+  background: rgb(var(--nexa-surface-400));
 }
 
 /* Firefox scrollbar */
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--nexa-surface-300) transparent;
+  scrollbar-color: rgb(var(--nexa-surface-300)) transparent;
 }
 
 /* Remove list styles */
