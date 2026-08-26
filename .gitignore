@@ -1,0 +1,9 @@
+node_modules/
+dist/
+dist-demo/
+.verify/
+*.tgz
+*.log
+examples/consumer/node_modules/
+examples/consumer/dist/
+examples/consumer/package-lock.json

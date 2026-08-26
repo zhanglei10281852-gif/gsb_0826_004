@@ -1,29 +1,8 @@
 <script setup lang="ts" generic="T extends Record<string, unknown>">
 import { computed, ref, reactive, onMounted, onUnmounted } from 'vue'
+import type { NTableColumn, NTableProps } from './types'
 
-interface Column<T> {
-  key: keyof T
-  label: string
-  sortable?: boolean
-  filterable?: boolean
-  resizable?: boolean
-  width?: string
-}
-
-interface Props {
-  data: T[]
-  columns: Column<T>[]
-  striped?: boolean
-  compact?: boolean
-  stickyHeader?: boolean
-  virtualScroll?: boolean
-  rowHeight?: number
-  visibleRows?: number
-  pageSize?: number
-  currentPage?: number
-}
-
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<NTableProps<T>>(), {
   striped: false,
   compact: false,
   stickyHeader: false,
@@ -173,7 +152,7 @@ function stopResize() {
   document.removeEventListener('mouseup', stopResize)
 }
 
-function getColStyle(col: Column<T>): Record<string, string> {
+function getColStyle(col: NTableColumn<T>): Record<string, string> {
   const w = columnWidths[String(col.key)] || col.width
   return w ? { width: w } : {}
 }
