@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, ref, watch, onMounted, onUnmounted } from 'vue'
+import { MotionDirective as vMotion } from '@vueuse/motion'
 import type { Size } from '@/types'
 
 interface Props {
