@@ -40,37 +40,11 @@ const positionClasses: Record<Position, string> = {
   'bottom-right': 'bottom-4 right-4',
 }
 
-// Spring animation based on position
-const motionConfig = computed(() => {
-  const isRight = props.position.includes('right')
-  const isTop = props.position.includes('top')
-  return {
-    initial: { 
-      opacity: 0, 
-      x: isRight ? 100 : -100,
-      y: isTop ? -20 : 20,
-      scale: 0.9,
-    },
-    enter: { 
-      opacity: 1, 
-      x: 0, 
-      y: 0,
-      scale: 1,
-      transition: { type: 'spring', stiffness: 400, damping: 30 },
-    },
-    leave: { 
-      opacity: 0, 
-      x: isRight ? 100 : -100,
-      scale: 0.9,
-      transition: { duration: 200 },
-    },
-  }
-})
-
 const classes = computed(() => [
   'fixed z-toast min-w-80 max-w-md p-4 rounded-xl shadow-lg',
   'bg-white/80 backdrop-blur-xl ring-1 ring-white/20',
   positionClasses[props.position],
+  `nexa-toast-${props.position}`,
 ])
 
 function close() {
@@ -92,15 +66,12 @@ onMounted(() => {
 </script>
 
 <template>
-  <div 
-    v-if="visible" 
-    v-motion
-    :initial="motionConfig.initial"
-    :enter="motionConfig.enter"
-    :leave="motionConfig.leave"
-    :class="classes" 
-    role="alert"
-  >
+  <Transition name="nexa-toast" appear>
+    <div
+      v-if="visible"
+      :class="classes"
+      role="alert"
+    >
     <div class="flex items-start gap-3">
       <span :class="['flex items-center justify-center w-6 h-6 rounded-full', typeConfig[type].iconBg]">
         <i :class="[typeConfig[type].icon, 'text-sm']" />
@@ -121,5 +92,35 @@ onMounted(() => {
       :class="typeConfig[type].bg"
       :style="{ width: `${progress}%` }"
     />
-  </div>
+    </div>
+  </Transition>
 </template>
+
+<style scoped>
+.nexa-toast-enter-active {
+  transition:
+    opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.nexa-toast-leave-active {
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+.nexa-toast-enter-from,
+.nexa-toast-leave-to {
+  opacity: 0;
+}
+.nexa-toast-enter-from.nexa-toast-top-right,
+.nexa-toast-leave-to.nexa-toast-top-right,
+.nexa-toast-enter-from.nexa-toast-bottom-right,
+.nexa-toast-leave-to.nexa-toast-bottom-right {
+  transform: translateX(64px) scale(0.9);
+}
+.nexa-toast-enter-from.nexa-toast-top-left,
+.nexa-toast-leave-to.nexa-toast-top-left,
+.nexa-toast-enter-from.nexa-toast-bottom-left,
+.nexa-toast-leave-to.nexa-toast-bottom-left {
+  transform: translateX(-64px) scale(0.9);
+}
+</style>
