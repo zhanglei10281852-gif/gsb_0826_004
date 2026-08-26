@@ -1,7 +1,5 @@
-<script setup lang="ts" generic="T extends Record<string, unknown>">
-import { computed, ref, reactive, onMounted, onUnmounted } from 'vue'
-
-interface Column<T> {
+<script lang="ts">
+export interface Column<T> {
   key: keyof T
   label: string
   sortable?: boolean
@@ -10,7 +8,7 @@ interface Column<T> {
   width?: string
 }
 
-interface Props {
+export interface NTableProps<T> {
   data: T[]
   columns: Column<T>[]
   striped?: boolean
@@ -22,8 +20,12 @@ interface Props {
   pageSize?: number
   currentPage?: number
 }
+</script>
 
-const props = withDefaults(defineProps<Props>(), {
+<script setup lang="ts" generic="T extends Record<string, unknown>">
+import { computed, ref, reactive, onMounted, onUnmounted } from 'vue'
+
+const props = withDefaults(defineProps<NTableProps<T>>(), {
   striped: false,
   compact: false,
   stickyHeader: false,
