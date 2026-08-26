@@ -1,38 +1,49 @@
 :root {
-  /* Primary Colors - Blue Purple Gradient */
-  --nexa-primary-50: #f5f3ff;
-  --nexa-primary-100: #ede9fe;
-  --nexa-primary-200: #ddd6fe;
-  --nexa-primary-300: #c4b5fd;
-  --nexa-primary-400: #a78bfa;
-  --nexa-primary-500: #8b5cf6;
-  --nexa-primary-600: #7c3aed;
-  --nexa-primary-700: #6d28d9;
-  --nexa-primary-800: #5b21b6;
-  --nexa-primary-900: #4c1d95;
+  /* Primary Colors - Blue Purple Gradient (RGB channels for alpha support) */
+  --nexa-primary-50: 245 243 255;
+  --nexa-primary-100: 237 233 254;
+  --nexa-primary-200: 221 214 254;
+  --nexa-primary-300: 196 181 253;
+  --nexa-primary-400: 167 139 250;
+  --nexa-primary-500: 139 92 246;
+  --nexa-primary-600: 124 58 237;
+  --nexa-primary-700: 109 40 217;
+  --nexa-primary-800: 91 33 182;
+  --nexa-primary-900: 76 29 149;
 
-  /* Surface Colors */
-  --nexa-surface-0: #ffffff;
-  --nexa-surface-50: #f8fafc;
-  --nexa-surface-100: #f1f5f9;
-  --nexa-surface-200: #e2e8f0;
-  --nexa-surface-300: #cbd5e1;
-  --nexa-surface-400: #94a3b8;
-  --nexa-surface-500: #64748b;
-  --nexa-surface-600: #475569;
-  --nexa-surface-700: #334155;
-  --nexa-surface-800: #1e293b;
-  --nexa-surface-900: #0f172a;
+  /* Surface Colors (RGB channels) */
+  --nexa-surface-0: 255 255 255;
+  --nexa-surface-50: 248 250 252;
+  --nexa-surface-100: 241 245 249;
+  --nexa-surface-200: 226 232 240;
+  --nexa-surface-300: 203 213 225;
+  --nexa-surface-400: 148 163 184;
+  --nexa-surface-500: 100 116 139;
+  --nexa-surface-600: 71 85 105;
+  --nexa-surface-700: 51 65 85;
+  --nexa-surface-800: 30 41 59;
+  --nexa-surface-900: 15 23 42;
 
-  /* Semantic Colors */
-  --nexa-success-500: #22c55e;
-  --nexa-success-600: #16a34a;
-  --nexa-warning-500: #f59e0b;
-  --nexa-warning-600: #d97706;
-  --nexa-error-500: #ef4444;
-  --nexa-error-600: #dc2626;
-  --nexa-info-500: #3b82f6;
-  --nexa-info-600: #2563eb;
+  /* Semantic Colors (RGB channels) */
+  --nexa-success-100: 220 252 231;
+  --nexa-success-500: 34 197 94;
+  --nexa-success-600: 22 163 74;
+  --nexa-success-700: 21 128 61;
+
+  --nexa-warning-100: 254 243 199;
+  --nexa-warning-500: 245 158 11;
+  --nexa-warning-600: 217 119 6;
+  --nexa-warning-700: 180 83 9;
+
+  --nexa-error-100: 254 226 226;
+  --nexa-error-500: 239 68 68;
+  --nexa-error-600: 220 38 38;
+  --nexa-error-700: 185 28 28;
+
+  --nexa-info-100: 219 234 254;
+  --nexa-info-500: 59 130 246;
+  --nexa-info-600: 37 99 235;
+  --nexa-info-700: 29 78 216;
 
   /* Typography */
   --nexa-font-sans:

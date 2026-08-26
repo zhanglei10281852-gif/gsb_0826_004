@@ -12,7 +12,53 @@
     "typescript",
     "unocss"
   ],
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./style.css": "./dist/style.css",
+    "./dist/*": "./dist/*",
+    "./components/*": {
+      "types": "./dist/components/*/index.d.ts",
+      "import": "./dist/components/*/index.js"
+    },
+    "./*": "./*"
+  },
   "peerDependencies": {
-    "vue": "~3.4.0"
+    "@vueuse/motion": "^2.2.0",
+    "vue": "^3.4.0"
+  },
+  "devDependencies": {
+    "@iconify-json/carbon": "^1.2.0",
+    "@iconify-json/mdi": "^1.2.0",
+    "@types/node": "^20.19.43",
+    "@unocss/vite": "^0.62.0",
+    "@vitejs/plugin-vue": "^5.1.0",
+    "@vueuse/motion": "^2.2.6",
+    "typescript": "^5.5.0",
+    "unocss": "^0.62.0",
+    "vite": "^5.4.0",
+    "vite-plugin-dts": "^4.2.0",
+    "vue": "^3.4.0",
+    "vue-tsc": "^2.1.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "npm run gen && vue-tsc --noEmit && vite build && npm run gen:subpath",
+    "gen": "node scripts/gen-entry.mjs",
+    "gen:subpath": "node scripts/gen-subpath.mjs",
+    "typecheck": "vue-tsc --noEmit",
+    "preview": "vite preview",
+    "verify": "npm run build && cd playground && npm install && npm run build"
   }
 }

@@ -1,57 +1,18 @@
 import type { App, Component } from "vue";
+import { MotionPlugin } from "@vueuse/motion";
 
-// Components
-import { NButton } from "./components/Button";
-import { NInput } from "./components/Input";
-import { NCard } from "./components/Card";
-import { NAvatar } from "./components/Avatar";
-import { NTabs } from "./components/Tabs";
-import { NBreadcrumb } from "./components/Breadcrumb";
-import { NToast } from "./components/Toast";
-import { NModal } from "./components/Modal";
-import { NSkeleton } from "./components/Skeleton";
-import { NTable } from "./components/Table";
-import { NBadge } from "./components/Badge";
-
-export {
-  NButton,
-  NInput,
-  NCard,
-  NAvatar,
-  NTabs,
-  NBreadcrumb,
-  NToast,
-  NModal,
-  NSkeleton,
-  NTable,
-  NBadge,
-};
-
-// Types
+export * from "./generated-components";
 export * from "./types";
 
-// Styles
-import "./styles/index.css";
+import { components } from "./generated-components";
 
-// Plugin
-const components: Record<string, Component> = {
-  NButton,
-  NInput,
-  NCard,
-  NAvatar,
-  NTabs,
-  NBreadcrumb,
-  NToast,
-  NModal,
-  NSkeleton,
-  NTable,
-  NBadge,
-};
-
-export default {
+const plugin = {
   install(app: App) {
-    Object.entries(components).forEach(([name, component]) => {
-      app.component(name, component);
-    });
+    app.use(MotionPlugin);
+    for (const [name, component] of Object.entries(components)) {
+      app.component(name, component as Component);
+    }
   },
 };
+
+export default plugin;
