@@ -107,8 +107,8 @@ function handleRowClick(row: typeof tableData[0]) {
             <a href="#feedback" class="px-3 py-2 rounded-lg text-sm text-surface-600 hover:text-surface-900 hover:bg-surface-100 nexa-transition">反馈</a>
           </div>
         </div>
-        <a href="http://localhost:3001" target="_blank" class="text-sm text-surface-600 hover:text-primary-600 nexa-transition">
-          文档
+        <a href="#feedback" class="text-sm text-surface-600 hover:text-primary-600 nexa-transition">
+          反馈组件
         </a>
       </div>
     </nav>
@@ -131,11 +131,11 @@ function handleRowClick(row: typeof tableData[0]) {
             基于原子设计理念的现代化 Vue 3 组件库。无障碍访问、高度可定制、精心打造。
           </p>
           <div class="flex flex-wrap gap-4">
-            <a href="http://localhost:3001/guide/getting-started.html" target="_blank">
+            <a href="#buttons">
               <NButton size="lg">🚀 快速开始</NButton>
             </a>
-            <a href="http://localhost:3001" target="_blank">
-              <NButton variant="outline" size="lg">📖 查看文档</NButton>
+            <a href="#feedback">
+              <NButton variant="outline" size="lg">📖 反馈组件</NButton>
             </a>
           </div>
         </div>

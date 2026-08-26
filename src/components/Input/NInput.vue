@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { useId } from '@/composables/useId'
-import type { Status } from '@/types'
+import { useId } from '../../composables/useId'
+import type { Status } from '../../types'
 
 interface Props {
   modelValue?: string

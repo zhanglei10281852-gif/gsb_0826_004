@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { Status } from '@/types'
+import type { Status } from '../../types'
 
 interface Props {
   value?: number | string

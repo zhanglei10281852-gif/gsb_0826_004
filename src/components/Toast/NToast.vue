@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
-import type { Status, Position } from '@/types'
+import { MotionDirective as vMotion } from '@vueuse/motion'
+import type { Status, Position } from '../../types'
 
 interface Props {
   message: string
