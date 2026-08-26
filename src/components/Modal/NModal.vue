@@ -50,43 +50,6 @@ if (import.meta.env.DEV) {
   }
 }
 
-// Dynamic motion config based on animation prop
-const motionInitial = computed(() => {
-  switch (props.animation) {
-    case 'fade':
-      return { opacity: 0 }
-    case 'slide':
-      return { opacity: 0, y: -40 }
-    case 'scale':
-    default:
-      return { opacity: 0, scale: 0.9, y: -20 }
-  }
-})
-
-const motionEnter = computed(() => {
-  switch (props.animation) {
-    case 'fade':
-      return { opacity: 1, transition: { duration: 200 } }
-    case 'slide':
-      return { opacity: 1, y: 0, transition: { type: 'spring' as const, stiffness: 300, damping: 25 } }
-    case 'scale':
-    default:
-      return { opacity: 1, scale: 1, y: 0, transition: { type: 'spring' as const, stiffness: 300, damping: 25, mass: 0.8 } }
-  }
-})
-
-const motionLeave = computed(() => {
-  switch (props.animation) {
-    case 'fade':
-      return { opacity: 0, transition: { duration: 150 } }
-    case 'slide':
-      return { opacity: 0, y: 20, transition: { duration: 150 } }
-    case 'scale':
-    default:
-      return { opacity: 0, scale: 0.95, transition: { duration: 150 } }
-  }
-})
-
 const modalClasses = computed(() => [
   'relative w-full rounded-2xl shadow-2xl ring-1 ring-white/20',
   props.glass ? 'bg-white/80 backdrop-blur-xl' : 'bg-white',
@@ -174,17 +137,13 @@ onUnmounted(() => {
         class="fixed inset-0 z-modal flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
         @click.self="onOverlayClick"
       >
-        <Transition :name="`modal-${animation}`">
-          <div 
-            v-if="modelValue" 
+        <Transition :name="`nexa-modal-${animation}`" appear>
+          <div
+            v-if="modelValue"
             ref="modalRef"
-            v-motion
-            :initial="motionInitial"
-            :enter="motionEnter"
-            :leave="motionLeave"
-            :class="modalClasses" 
+            :class="modalClasses"
             :style="modalStyle"
-            role="dialog" 
+            role="dialog"
             aria-modal="true"
           >
             <div 
@@ -228,12 +187,34 @@ onUnmounted(() => {
   opacity: 0;
 }
 
-.modal-scale-enter-active,
-.modal-scale-leave-active,
-.modal-fade-enter-active,
-.modal-fade-leave-active,
-.modal-slide-enter-active,
-.modal-slide-leave-active {
-  /* Handled by v-motion */
+.nexa-modal-scale-enter-active,
+.nexa-modal-scale-leave-active,
+.nexa-modal-fade-enter-active,
+.nexa-modal-fade-leave-active,
+.nexa-modal-slide-enter-active,
+.nexa-modal-slide-leave-active {
+  transition:
+    opacity 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.nexa-modal-scale-enter-from {
+  opacity: 0;
+  transform: scale(0.9) translateY(-20px);
+}
+.nexa-modal-scale-leave-to {
+  opacity: 0;
+  transform: scale(0.95);
+}
+.nexa-modal-fade-enter-from,
+.nexa-modal-fade-leave-to {
+  opacity: 0;
+}
+.nexa-modal-slide-enter-from {
+  opacity: 0;
+  transform: translateY(-40px);
+}
+.nexa-modal-slide-leave-to {
+  opacity: 0;
+  transform: translateY(20px);
 }
 </style>

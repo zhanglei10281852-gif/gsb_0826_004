@@ -30,7 +30,7 @@ export {
 // Types
 export * from "./types";
 
-// Styles
+import "virtual:uno.css";
 import "./styles/index.css";
 
 // Plugin
